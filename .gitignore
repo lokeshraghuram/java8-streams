@@ -1,5 +1,6 @@
 # Compiled class file
 *.class
+out/
 
 # Log file
 *.log
@@ -12,6 +13,8 @@
 
 # Package Files #
 *.jar
+.idea
+*.iml
 *.war
 *.nar
 *.ear
