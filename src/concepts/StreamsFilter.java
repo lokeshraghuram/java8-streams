@@ -12,7 +12,7 @@ public class StreamsFilter {
         Set<Integer> uniqueScores = new HashSet<>();
         AtomicInteger ranks = new AtomicInteger(0);
 
-        // projectList is sorted by scores. Check In loop output
+        // projectList is iterated and scores are not sorted. Check In loop output
         projectsList.stream().forEach(project -> {
                     System.out.println("In loop:" + project.getScore());
                     if (!uniqueScores.contains(project.getScore())) {
