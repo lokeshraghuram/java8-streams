@@ -50,6 +50,27 @@ public class StreamsFilter {
         projectsList.forEach(project -> {
             System.out.println("score:" + project.getScore() + "-" + "rank:" + project.getRank());
         });
+
+        // Resetting the variables
+        uniqueScores.clear();
+        ranks.set(0);
+
+        //ProjectList is sorted in reverse order before applying forEach. Now In loop output will be in sequence
+        projectsList.stream().sorted(Comparator.comparing(Project::getScore, Comparator.reverseOrder())).forEach(project -> {
+                    System.out.println("In loop:" + project.getScore());
+                    // If score is new we increment the rank. Otherwise we use the same rank
+                    if (!uniqueScores.contains(project.getScore())) {
+                        uniqueScores.add(project.getScore());
+                        project.setRank(ranks.addAndGet(1));
+                    } else {
+                        project.setRank(ranks.get());
+                    }
+                }
+        );
+
+        projectsList.forEach(project -> {
+            System.out.println("score:" + project.getScore() + "-" + "rank:" + project.getRank());
+        });
     }
 
     private List<Project> mapProjects() {
